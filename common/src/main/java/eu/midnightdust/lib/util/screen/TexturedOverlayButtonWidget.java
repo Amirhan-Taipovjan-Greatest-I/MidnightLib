@@ -30,12 +30,10 @@ public class TexturedOverlayButtonWidget extends TexturedButtonWidget {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderTexture(0, WIDGETS_TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
-        int i = this.getYImage(this.isHovered());
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.enableDepthTest();
-        this.drawTexture(matrices, this.getX(), this.getY(), 0, 46 + i * 20, this.width / 2, this.height);
-        this.drawTexture(matrices, this.getX() + this.width / 2, this.getY(), 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
+        this.drawNineSlicedTexture(matrices, this.getX(), this.getY(), this.width, this.height, 4, 200, 20, 0, this.getYImage());
 
         super.renderButton(matrices, mouseX, mouseY, delta);
     }
